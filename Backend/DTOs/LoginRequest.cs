@@ -2,6 +2,6 @@ namespace Backend.DTOs
 {
     public class LoginRequest
     {
-        public string Correo { get; set; } = string.Empty;
+        public string Correo { get; set; } = string.Empty; // Correo del usuario
     }
 }

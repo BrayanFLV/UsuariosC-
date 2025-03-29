@@ -1,7 +1,8 @@
 // Models/User.cs
 using System;
 
-namespace Backend.Models
+namespace Backend.Models // Definición de la clase User que representa un usuario en el sistema
+// Se utiliza para mapear la tabla de usuarios en la base de datos
 {
     public class User
     {

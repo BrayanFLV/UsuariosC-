@@ -1,7 +1,8 @@
 // DTOs/UserDto.cs
 namespace Backend.DTOs
 {
-    public class UserDto
+    public class UserDto // DTO para representar un usuario
+    // Se utiliza para transferir datos entre la aplicación y el cliente
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;

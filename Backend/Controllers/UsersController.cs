@@ -16,13 +16,14 @@ namespace Backend.Controllers
             _service = service;
         }
 
+//     Controlador para gestionar usuarios
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var users = await _service.GetAllUsersAsync();
             return Ok(users);
         }
-
+//     Obtener usuario por ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -30,14 +31,14 @@ namespace Backend.Controllers
             if (user == null) return NotFound("Usuario no encontrado");
             return Ok(user);
         }
-
+//   Crear usuario
         [HttpPost]
         public async Task<IActionResult> Create(User user)
         {
             var created = await _service.CreateUserAsync(user);
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
-
+//  Actualizar usuario
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, User user)
         {
@@ -45,7 +46,7 @@ namespace Backend.Controllers
             if (!updated) return NotFound("Usuario no encontrado");
             return NoContent();
         }
-
+//  Eliminar usuario
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -54,7 +55,7 @@ namespace Backend.Controllers
             return NoContent();
         }
 
-        // ✅ Login - actualizar fecha de último acceso por correo
+        // Login - actualizar fecha de último acceso por correo
         [HttpPut("login")]
         public async Task<IActionResult> LoginUpdate([FromBody] LoginRequest request)
         {

@@ -58,7 +58,7 @@ namespace Backend.Services
             return true;
         }
 
-        // ✅ NUEVO: Actualizar fecha de último acceso por correo
+        //: Actualizar fecha de último acceso por correo
         public async Task<UserDto?> UpdateLastAccessByEmailAsync(string correo)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Correo == correo);
@@ -70,7 +70,7 @@ namespace Backend.Services
             return MapToDto(user);
         }
 
-        // 🔐 MÉTODO PRIVADO PARA CALCULAR CLASIFICACIÓN Y PUNTAJE
+        // MÉTODO PRIVADO PARA CALCULAR CLASIFICACIÓN Y PUNTAJE
         private UserDto MapToDto(User user)
         {
             var nombreCompleto = (user.Nombre + " " + user.Apellidos).Trim();
@@ -80,10 +80,10 @@ namespace Backend.Services
             var horasDesdeUltimoAcceso = (DateTime.Now - user.FechaUltimoAcceso).TotalHours;
             string clasificacion = horasDesdeUltimoAcceso switch
             {
-                < 12 => "Hechicero",
-                < 48 => "Luchador",
+                < 12 => "Hechicero", // 0 días
+                < 48 => "Luchador", // 2 días
                 <= 168 => "Explorador", // 7 días
-                _ => "Olvidado"
+                _ => "Olvidado" // Más de 7 días
             };
 
             // Puntaje por nombre y dominio de correo
